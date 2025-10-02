@@ -47,6 +47,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- LibrePDF -->
+		<dependency>
+			<groupId>com.github.librepdf</groupId>
+			<artifactId>openpdf</artifactId>
+			<version>1.3.30</version>
+		</dependency>
+
 		<!-- Lombok (para anotaciones como @Data, @Getter, etc.) -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

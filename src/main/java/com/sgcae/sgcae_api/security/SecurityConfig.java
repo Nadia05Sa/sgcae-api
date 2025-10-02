@@ -40,6 +40,8 @@ public class SecurityConfig {
                         // 🔓 Login y /me públicos
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/auth/me").permitAll()
+                        .requestMatchers(HttpMethod.GET, "pdf/citas-completadas").permitAll()
+                        .requestMatchers(HttpMethod.GET, "pdf/secciones").permitAll()
 
                         // ✅ Acceso público a imágenes
                         .requestMatchers("/archivos/**").permitAll()
@@ -91,6 +93,17 @@ public class SecurityConfig {
                         .hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/apoyos/**")
                         .hasAuthority("ROLE_ADMIN")
+
+                        // 📂 Secciones
+                        .requestMatchers(HttpMethod.GET, "/api/secciones/**")
+                        .hasAnyAuthority("ROLE_ADMIN", "ROLE_SECRETARIA")
+                        .requestMatchers(HttpMethod.POST, "/api/secciones/**")
+                        .hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/secciones/**")
+                        .hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/secciones/**")
+                        .hasAuthority("ROLE_ADMIN")
+
 
                         // 🛡️ Cualquier otra ruta requiere autenticación
                         .anyRequest().authenticated())
